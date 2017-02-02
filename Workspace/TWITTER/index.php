@@ -13,11 +13,8 @@
     <input type="submit" value="Zaloguj">
     <br>
     <br>
-    <br>
-    <button formaction="register.html">Nie mam konta, a chcę mieć!</button>
-
-
   </form>
+  <a href="register.php">Nie mam konta, a chcę mieć!</a>
 
 
 </html>

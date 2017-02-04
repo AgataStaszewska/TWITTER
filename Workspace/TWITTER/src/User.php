@@ -13,7 +13,9 @@ class User {
     $this->email = "";
     $this->hashedPassword = "";
   }
-
+  public function getId(){
+    return $this->id;
+  }
   public function setUsername($newUsername){
     $this->username = $newUsername;
   }
@@ -30,14 +32,6 @@ class User {
 
     $this->hashedPassword = $newHashedPassword;
   }
-  public function checkPassword($passwordToCheck){
-    if(password_verify($passwordToCheck, $this->hashedPassword))
-    {return true;
-    }else{
-      return false;
-    }
-  }
-
 
   public function saveToDB(){
     global $conn;
@@ -87,10 +81,28 @@ class User {
       $loadedUser->username = $row["username"];
       $loadedUser->email = $row["email"];
       $loadedUser->hashedPassword = $row["hashed_password"];
-      // var_dump($loadedUser);
 
       return $loadedUser;
    }
+   static public function loadUserByUsername($username){
+       global $conn;
+       $sql = "SELECT id, email, hashed_password FROM Users WHERE username=?";
+       $result = $conn->prepare($sql);
+       $result->execute([$username]);
+
+       $row = $result->fetch();
+       $loadedUser = new User();
+
+       $loadedUser->id = $row["id"];
+       $loadedUser->username = $username;
+       $loadedUser->email = $row["email"];
+       $loadedUser->hashedPassword = $row["hashed_password"];
+
+       return $loadedUser;
+    }
+
+
+
    static public function loadUserByEmail($email){
        global $conn;
        $sql = "SELECT username, id, hashed_password FROM Users WHERE email=?";
@@ -103,13 +115,12 @@ class User {
 
        }
 
-       var_dump($row);
+
        $loadedUser = new User();
        $loadedUser->id = $row["id"];
        $loadedUser->username = $row["username"];
        $loadedUser->email = $email;
        $loadedUser->hashedPassword = $row["hashed_password"];
-       var_dump($loadedUser);
 
        return $loadedUser;
 
@@ -129,8 +140,9 @@ class User {
 
       $usersArray[] = $loadedUser;
     }
-    var_dump($usersArray);
   }
 }
+// var_dump(User::loadUserByEmail("bruce.wayne@gmail.com"));
+// var_dump(User::loadUserByUsername("Spiderman"));
 
  ?>

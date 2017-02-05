@@ -3,7 +3,6 @@ if(!isset($_SESSION)){
   session_start();
 }
 include("src/User.php");
-// $user = new User();
 
 ?>
 <!DOCTYPE html>

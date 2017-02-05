@@ -1,7 +1,7 @@
 <?php
 include("connection.php");
 
-class Tweet{
+class Tweet {
   private $id;
   private $user_id;
   private $text;
@@ -47,7 +47,7 @@ class Tweet{
           echo "<br>";
 
       }
-      $loadedTweet = new User();
+      $loadedTweet = new Tweet();
       $loadedTweet->id = $id;
       $loadedTweet->text = $row["text"];
       $loadedTweet->user_id = $row["user_id"];
@@ -56,7 +56,7 @@ class Tweet{
    }
    static public function loadAllTweets(){
      global $conn;
-     $sql = "SELECT * FROM Twity ORDER BY creationDate DESC";
+     $sql = "SELECT * FROM Twity ORDER BY creationDate DESC"; 
      $tweetsArray = [];
      $result = $conn->query($sql);
 
@@ -88,7 +88,6 @@ class Tweet{
          $loadedTweet->id = $row["id"];
          $loadedTweet->user_id["user_id"];
          $loadedTweet->text = $row["text"];
-         $loadedTweet->text = $row["text"];
          $tweetsArray[] = $loadedTweet;
          echo $row["text"];
          echo "<br>";
@@ -97,13 +96,6 @@ class Tweet{
          echo "<br>";
 
      }
-    //  $loadedUser = new User();
-    //  $loadedUser->id = $id;
-    //  $loadedUser->username = $row["username"];
-    //  $loadedUser->email = $row["email"];
-    //  $loadedUser->hashedPassword = $row["hashed_password"];
-    //
-    //  return $loadedUser;
   }
   public function saveToDB(){
     global $conn;
@@ -113,7 +105,6 @@ class Tweet{
     return true;
     }
 }
-
 
 
  ?>

@@ -8,8 +8,6 @@ include("src/Tweet.php");
 $username = $_SESSION['username'];
 $user = new User();
 $user = $user->loadUserByUsername($username);
-// var_dump(User::loadUserByUsername($username));
-// var_dump($user);
 
 
 
@@ -28,7 +26,9 @@ $user = $user->loadUserByUsername($username);
   echo "<br>";
   echo "<br>";
   ?>
-  <span style="font-size:20">Twoje ćwierki:</span><br>
+  <a href="main.php">Przejdź do strony głównej</a><br>
+  <a href="messages.php">Przejdź do skrzynki pocztowej</a><br>
+  <span style="font-size:20px">Twoje ćwierki:</span><br>
   <br>
   <br>
 
@@ -36,7 +36,6 @@ $user = $user->loadUserByUsername($username);
   Tweet::loadAllTweetsByUserId($user->getId());
 
   ?>
-<a href="main.php">Przejdź do strony głównej</a>
 </body>
 </html>
 

@@ -1,0 +1,20 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+{% for contact in contacts %}
+   <a href="{{path('coderslab_contact_show', {'id':contact.id}) }}">
+   {{contact.name}} {{contact.surname}}
+   </a>
+   <a class="btn btn-default" href='{{path('coderslab_contact_edit',{'id':contact.id})}}'>Edit</a>
+   <a class="btn btn-danger" href='{{path('coderslab_contact_delete', {'id':contact.id}) }}'>Remove</a>
+
+    <br>
+   {% else %}
+     No contacts!
+{% endfor %}
+
+
+   <a href="{{path('coderslab_contact_new') }}" class="btn btn-success">
+    <i class='fa fa-plus'></i>
+    Add new
+   </a>
+{% endblock %}

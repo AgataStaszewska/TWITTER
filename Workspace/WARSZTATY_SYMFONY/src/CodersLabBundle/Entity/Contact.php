@@ -146,7 +146,7 @@ class Contact
     /**
      * Get address
      *
-     * @return \CodersLabBundle\Entity\Address 
+     * @return \CodersLabBundle\Entity\Address
      */
     public function getAddress()
     {
